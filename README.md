@@ -1,73 +1,36 @@
-# Welcome to your Lovable project
+# Welcome GenSight(MLP) project
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+Created a complete backend setup in backend/:
 
-## How can I edit this code?
+    train_model.py — Trains 2 scikit-learn MLPClassifiers (512→256→128, matching your Keras architecture) for Genetic Disorder and Disorder Subclass, saves as .joblib
+    app.py — Flask API with /predict and /health endpoints, maps GUI fields to dataset columns
+    Dockerfile — Auto-trains on build if train.csv is present, serves via gunicorn
+    requirements.txt — All Python dependencies
 
-There are several ways of editing your application.
+To deploy:
 
-**Use Lovable**
+    Place train.csv in backend/
+    Run pip install -r requirements.txt && python train_model.py
+    Run python app.py (or use Docker)
+    Set VITE_API_URL=http://your-server:5000 for the frontend
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+Step 3: Start the Backend Server
 
-Changes made via Lovable will be committed automatically to this repo.
+WHY: The GUI needs a running server to send patient data to and get predictions back.
 
-**Use your preferred IDE**
+python app.py
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+You should see: Running on http://localhost:5000. Keep this terminal open.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Step 4: Start the Frontend
 
-Follow these steps:
+WHY: This is the visual dashboard you interact with.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Open a second terminal, go to the project root:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+npm install
 npm run dev
-```
 
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Opens at http://localhost:8080. The frontend is already configured to talk to localhost:5000
