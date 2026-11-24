@@ -1,6 +1,8 @@
 # Welcome GenSight(MLP) project
 
 ## Project info
+Engineered features, selected them with mutual information, balanced classes with SMOTE, and compared 9 classical ML models against a deep MLP using accuracy, F1-score and confusion matrices.
+
 
 Created a complete backend setup in backend/:
 
